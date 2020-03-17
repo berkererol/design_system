@@ -1,24 +1,31 @@
 import { Meta, Story, Preview, Source } from '@storybook/addon-docs/blocks';
-import { DefaultDialogBox } from '../components/Dialog';
-import { Box, Divider, Grid } from '@material-ui/core';
-import * as Icons from '../components/Icons/IconObjects';
+import { DialogStoryExample } from '../components/Dialog/DialogStoryExample';
+import { Grid } from '@material-ui/core';
 
+<Meta title="Components/Dialog" component={DialogStoryExample} />
 
-<Meta title="Components/Dialog" component={DefaultDialogBox} />
+# Dialog
 
-# Dialogs
+Dialogs should be used whenever an explicit response is needed from the user, and that response is needed before anything else can happen.  
+A dialog overlays the screen and is normally used for modal events that require users to take an action before they can proceed.
+
+## Statuses
 
 <Preview>
-    <Story name="Dialog Types">
-        <Box>
-            <DefaultDialogBox type="info" />
-            <DefaultDialogBox type="warning" />
-            <DefaultDialogBox type="error" />
-            <DefaultDialogBox type="success" />
-        </Box>   
-    </Story>
+  <Story name="Statuses">
+     <Grid container direction="row" justify="center" spacing={4}>
+        <Grid item>
+          <DialogStoryExample status="info" />
+        </Grid>
+        <Grid item>
+          <DialogStoryExample status="warning" />
+        </Grid>
+        <Grid item>
+          <DialogStoryExample status="error" />
+        </Grid>
+        <Grid item>
+          <DialogStoryExample status="success" />
+        </Grid>
+    </Grid>
+  </Story>
 </Preview>
-
-
-
-

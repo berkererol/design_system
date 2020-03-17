@@ -1,28 +1,34 @@
-import React, { useMemo } from 'react'
-import { Dialog as MUIDialog, Divider } from '@material-ui/core'
-import { ColoredBar } from '../ColoredBar'
-import { DialogContext } from './Context'
+import React, { useMemo } from 'react';
+import { Dialog as MUIDialog, Divider } from '@material-ui/core';
+import { DialogContext } from './Context';
+import { isMobile, useUniqueId } from '../Utils';
 
 export const Dialog = ({
-  'aria-describedby': ariaDescribedById,
-  'aria-labelledby': ariaLabelledById,
   children,
   open,
   onClose,
   PaperProps,
   type,
+  status = 'info',
   ...other
 }) => {
+  const ariaDescribedById = useUniqueId();
+  const ariaLabelledById = useUniqueId();
+
   const mergedPaperProps = {
     'aria-describedby': ariaDescribedById,
     'aria-labelledby': ariaLabelledById,
     'aria-modal': true,
-    ...PaperProps
-  }
-  const dialogContextValue = useMemo(
-    () => ({ ariaDescribedById, ariaLabelledById }),
-    [ariaDescribedById, ariaLabelledById]
-  )
+    role: isMobile() ? 'alertdialog' : 'dialog',
+    ...PaperProps,
+  };
+
+  const dialogContextValue = useMemo(() => ({ ariaDescribedById, ariaLabelledById, status }), [
+    ariaDescribedById,
+    ariaLabelledById,
+    status,
+  ]);
+  
   return (
     <MUIDialog
       onClose={onClose}
@@ -30,14 +36,15 @@ export const Dialog = ({
       PaperProps={mergedPaperProps}
       {...other}
     >
-      <ColoredBar type={type} />
       <DialogContext.Provider value={dialogContextValue}>
-        {React.Children.map(children, (child, index) => (
-          <>
-            {React.cloneElement(child, { type })}
-            {index < children.length - 1 && <Divider aria-hidden />}
-          </>
-        ))}
+        {children
+          ? React.Children.map(children, (child, index) => (
+              <>
+                {React.cloneElement(child)}
+                {index < children.length - 1 && <Divider aria-hidden />}
+              </>
+            ))
+          : null}
       </DialogContext.Provider>
     </MUIDialog>
   )

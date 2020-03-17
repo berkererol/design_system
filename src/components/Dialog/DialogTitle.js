@@ -1,50 +1,41 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
     Box,
-    IconButton,
-    DialogTitle as MUIDialogTitle,
-    Typography
+    useTheme
 } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
-import { NotificationIcon } from '../Notification/NotificationIcon'
-import { DialogContext } from './Context'
-import { Close }from '@material-ui/icons'
- 
+import { Close } from '@material-ui/icons'
+import { IconButton } from '../IconButton';
+import { Typography } from '../Typography';
+import { StatusIcon } from '../StatusIcon';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-      paddingBottom: theme.spacing(1),
-      paddingRight: theme.spacing(1),
-      paddingTop: theme.spacing(1)
-    }
-  }))
+import { useDialogContext } from './Context';
 
-export const DialogTitle = ({ type, children, closeButtonProps, ...other }) => {
-  const classes = useStyles()
-  const { ariaLabelledById } = useContext(DialogContext)
-  
+export const DialogTitle = ({
+  children,
+  closeButtonProps,
+  ...props
+}) => {
+  const theme = useTheme();
+  const { ariaLabelledById, status = 'info' } = useDialogContext();
   return (
-      <MUIDialogTitle
-        disableTypography
-        classes={{ root: classes.root }}
-        {...other}
-        type={type}
-      >
-        <Box display='flex' flexDirection='row' alignItems='center'>
-          <Box mr={2}>
-            <NotificationIcon type={type} />
+    <Box borderTop={theme.spacing(0.5)} borderColor={theme.palette[status].main} {...props}>
+      <Box px={2} p={1}>
+        <Box display="flex" flexDirection="row" alignItems="center">
+          <Box mr={1} display="flex" flexDirection="row" alignItems="center">
+            <StatusIcon status={status} />
           </Box>
           <Box flex={1}>
-            <Typography id={ariaLabelledById} variant='h2'>
+            <Typography id={ariaLabelledById} component="h2" variant="h6">
               {children}
             </Typography>
           </Box>
           <Box>
-            <IconButton type={type} {...closeButtonProps}>
+            <IconButton {...closeButtonProps}>
               <Close />
             </IconButton>
           </Box>
         </Box>
-      </MUIDialogTitle>
-    )
-}
+      </Box>
+    </Box>
+  );
+};

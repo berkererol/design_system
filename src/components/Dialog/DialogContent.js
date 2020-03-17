@@ -2,37 +2,29 @@ import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import {
     DialogContent as MUIDialogContent,
-    DialogContentText 
+    Box 
 } from '@material-ui/core';
-import { DialogContext } from './Context';
+import { Typography } from '../Typography';
+import { useDialogContext } from './Context';
 
 const useStyles = makeStyles(theme => ({
-    content: {
-        color: theme.palette.text.main,
-        margin: 0,
-        padding: 0,
-        whiteSpace: 'pre-wrap'
-    },
     root: {
-        paddingBottom: theme.spacing(2),
-        paddingTop: theme.spacing(2)
+        overflowY: 'auto',
+        padding: theme.spacing(2),
+        whiteSpace: 'pre-wrap',
     }
 }))
 
-export const DialogContent = ({ children, ...other }) => {
+export const DialogContent = ({ children, ...props }) => {
     const classes = useStyles();
-    const { ariaDescribedById } = useContext(DialogContext);
-
+    const { ariaDescribedById } = useDialogContext();
+  
     return (
-        <MUIDialogContent
-        id={ariaDescribedById}
-        classes={{ root: classes.root }}
-        {...other}
-        >
-        <DialogContentText classes={{ root: classes.content }}>
-                {children}
-        </DialogContentText>
-        </MUIDialogContent>
-    )
-}
+      <Box className={classes.root} {...props}>
+        <Typography component="div" variant="body1" id={ariaDescribedById}>
+          {children}
+        </Typography>
+      </Box>
+    );
+  };
 

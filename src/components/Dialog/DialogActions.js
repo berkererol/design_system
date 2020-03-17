@@ -1,44 +1,34 @@
 import React from 'react';
-import {
-    Box,
-    Button,
-    DialogActions as MUIDialogActions
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
-
-const useStyles = makeStyles(theme => ({
-    button: {
-        minWidth: '100px'
-    },
-    root: {
-        padding: theme.spacing(2)
-    }
-}))
+import { Box } from '@material-ui/core';
+import { Button } from '../Button';
 
 export const DialogActions = ({
-    confirmButtonProps,
-    declineButtonProps,
-    ...other
-}) => {
-    const classes = useStyles()
-
+    confirmButtonProps = {},
+    declineButtonProps = {},
+    ...props
+  }) => {
+    const declineText = declineButtonProps.children || 'Cancel';
+    const confirmText = confirmButtonProps.children || 'OK';
     return (
-        <MUIDialogActions classes={ { root: classes.root} } {...other} >
-            <Box mr={1}>
-                <Button className={classes.button} size='large' {...declineButtonProps}>
-                    {declineButtonProps.text}
-                </Button>
-            </Box>
-            <Button 
-                className={classes.button}
-                color='primary'
-                size='large'
-                {...confirmButtonProps}
-            >
-                {confirmButtonProps.text}
-            </Button>
-        </MUIDialogActions>
-    )
-}
+      <Box
+        display="flex"
+        flexDirection="row"
+        px={2}
+        py={1}
+        alignContent="center"
+        justifyContent="flex-end"
+        {...props}
+      >
+        <Box mr={1}>
+          <Button {...declineButtonProps} autoFocus>
+            {declineText}
+          </Button>
+        </Box>
+        <Button color="primary" {...confirmButtonProps}>
+          {confirmText}
+        </Button>
+      </Box>
+    );
+  };
 
 
