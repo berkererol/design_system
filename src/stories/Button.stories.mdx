@@ -1,0 +1,348 @@
+import { Meta, Story, Preview, Source } from '@storybook/addon-docs/blocks';
+import { withA11y } from '@storybook/addon-a11y';
+import { IconButton, Button } from '../components';
+import { Box, Divider, Grid } from '@material-ui/core';
+import {
+  AddShoppingCart as AddShoppingCartIcon,
+  Alarm as AlarmIcon,
+  Delete as DeleteIcon,
+  CloudUpload as CloudUploadIcon,
+  KeyboardVoice as KeyboardVoiceIcon,
+  Send as SendIcon
+} from '@material-ui/icons';
+
+<Meta title="Components/Button" component={Button} decorators={[withA11y]} />
+
+# Button
+
+Buttons should be used as interactive elements for user-initiated events such as form submissions or confirmation/cancellation on a modal dialog.
+
+## General
+
+This component is an extended & themed version of MUI's button component.
+
+- [Component documentation](https://material-ui.com/components/buttons/)
+- [API documentation](https://material-ui.com/api/button/)
+- [Source Code](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Button)
+
+## Usage
+
+### Types of button
+We support two types of buttons, these 'types of buttons' are referred to as **variants** by MUI.
+The _default variant_ is equal to a **Text Button**, whereas `<Buttton variant='contained'>` will render a **Contained Button** which is a button with a background color.
+
+### Colors of button
+UX design dictates that the primary action of a user interface (e.g. Submit, OK), should always be highlighted through a _primary color_ `<Button color='primary'>`, whereas secondary actions (e.g. Cancel, Dismiss) should use the default button `<Button>`.
+
+**NOTE:** If you want an anchor tag to resemble the `<Button>` component, any `<Button>` component with an `href` prop will automatically render the approriate tag.
+
+export const buttonSource = `
+// Render a contained button with primary color
+  <Button variant="contained" color="primary">
+      Contained-primary Button
+  </Button>
+// ***
+// ***
+// Render an anchor tag that resembles the same Button component
+  <Button href="https://www.onespan.com" variant="contained" color="primary">
+      Contained-primary Button
+  </Button>
+`;
+
+<Source code={buttonSource} language="jsx" format={false} dark />
+
+### Custom props
+<!-- Remove custom props when progress spinner is decomposed into new component -->
+| Prop Name    | typeof            | Description                                                                      |
+| ------------ | ----------------- | -------------------------------------------------------------------------------- |
+| showProgress | boolean \| string | Will show progress spinner, with optional progress message if string is provided |
+
+## Contained Buttons
+
+<Preview>
+  <Story name="Contained">
+    <Grid container spacing={8} direction="row" justify="center" alignItems="flex-start">
+      <Grid item>
+        <Grid container spacing={1} direction="column" justify="center" alignItems="flex-start">
+          <Grid item>
+            <Button variant="contained" color="primary">
+              Primary
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" color="primary" disabled>
+              Primary Disabled
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" color="primary" showProgress="Loading...">
+              Primary
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" color="primary" showProgress aria-label='Loading...' />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        <Grid container spacing={1} direction="column" justify="center" alignItems="flex-start">
+          <Grid item>
+            <Button variant="contained">Default</Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" disabled>
+              Default Disabled
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" showProgress="Loading...">
+              Default
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" showProgress aria-label='Loading...'>
+              Default
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
+  </Story>
+</Preview>
+
+
+## Text Buttons
+<Preview>
+  <Story name="Text">
+    <Grid container spacing={8} direction="row" justify="center" alignItems="flex-start">
+      <Grid item>
+        <Grid container spacing={1} direction="column" justify="center" alignItems="flex-start">
+          <Grid item>
+            <Button color="primary">Primary</Button>
+          </Grid>
+          <Grid item>
+            <Button color="primary" disabled>
+              Primary Disabled
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button color="primary" showProgress="Loading...">
+              Primary
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button color="primary" showProgress aria-label='Loading...'>
+              Primary
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        <Grid container spacing={1} direction="column" justify="center" alignItems="flex-start">
+          <Grid item>
+            <Button>Default</Button>
+          </Grid>
+          <Grid item>
+            <Button disabled>Default Disabled</Button>
+          </Grid>
+          <Grid item>
+            <Button showProgress="Loading...">Default</Button>
+          </Grid>
+          <Grid item>
+            <Button showProgress aria-label='Loading...'>Default</Button>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
+  </Story>
+</Preview>
+
+## Sizes
+<Preview>
+  <Story name="Sizes">
+    <Grid container spacing={1} direction="column" justify="center" alignItems="center">
+      <Grid item>
+        <Grid container spacing={1} direction="row" justify="center" alignItems="center">
+          <Grid item>
+            <Button size="small">
+              Small
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button size="medium">
+              Medium
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button size="large">
+              Large
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        <Grid container spacing={1} direction="row" justify="center" alignItems="center">
+          <Grid item>
+            <Button size="small" color="primary">
+              Small
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button size="medium" color="primary">
+              Medium
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button size="large" color="primary">
+              Large
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        <Grid container spacing={1} direction="row" justify="center" alignItems="center">
+          <Grid item>
+            <Button size="small" variant="contained">
+              Small
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button size="medium" variant="contained">
+              Medium
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button size="large" variant="contained">
+              Large
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        <Grid container spacing={1} direction="row" justify="center" alignItems="center">
+          <Grid item>
+            <Button size="small" variant="contained" color="primary">
+              Small
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button size="medium" variant="contained" color="primary">
+              Medium
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button size="large" variant="contained" color="primary">
+              Large
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        <Grid container spacing={1} direction="row" justify="center" alignItems="center">
+          <Grid item>
+            <IconButton aria-label="delete">
+              <DeleteIcon fontSize="small" />
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <IconButton aria-label="delete">
+              <DeleteIcon />
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <IconButton aria-label="delete">
+              <DeleteIcon fontSize="large" />
+            </IconButton>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        <Grid container spacing={1} direction="row" justify="center" alignItems="center">
+          <Grid item>
+            <IconButton aria-label="alarm" color="primary">
+              <AlarmIcon fontSize="small" />
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <IconButton aria-label="alarm" color="primary">
+              <AlarmIcon />
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <IconButton aria-label="alarm" color="primary">
+              <AlarmIcon fontSize="large" />
+            </IconButton>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
+  </Story>
+</Preview>
+
+## Buttons with icons and label
+<Preview>
+  <Story name="with Icons">
+    <Grid container spacing={1} direction="row" justify="center" alignItems="flex-start">
+      <Grid item>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<DeleteIcon />}
+        >
+          Delete
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button
+          variant="contained"
+          color="primary"
+          endIcon={<SendIcon />}
+        >
+          Send
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button
+          variant="contained"
+          color="default"
+          startIcon={<CloudUploadIcon />}
+        >
+          Upload
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button
+          variant="contained"
+          disabled
+          color="primary"
+          startIcon={<KeyboardVoiceIcon />}
+        >
+          Talk
+        </Button>
+      </Grid>
+    </Grid>
+  </Story>
+</Preview>
+
+## Icon Buttons
+<Preview>
+  <Story name="Icon Buttons">
+    <Grid container spacing={1} direction="row" justify="center" alignItems="flex-start">
+      <Grid item>
+        <IconButton aria-label="delete">
+          <DeleteIcon />
+        </IconButton>
+      </Grid>
+      <Grid item>
+        <IconButton color="primary" aria-label="add to shopping cart">
+          <AddShoppingCartIcon />
+        </IconButton>
+      </Grid>
+      <Grid item>
+        <IconButton aria-label="alarm" disabled color="primary">
+          <AlarmIcon />
+        </IconButton>
+      </Grid>
+    </Grid>
+  </Story>
+</Preview>

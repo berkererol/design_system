@@ -1,0 +1,21 @@
+import { Meta, Story, Preview, Source } from '@storybook/addon-docs/blocks';
+import { withA11y } from '@storybook/addon-a11y';
+import { Box, Divider, Grid } from '@material-ui/core';
+import { DemoBox, IconBox } from '../components/Icons';
+import * as Icons from '../components/Icons/IconObjects';
+
+# Icons
+
+<Meta title="Components/Icons" component={Icon} />
+
+<Preview>
+    <Story name="Icons">
+        <DemoBox>
+            <div>
+            {Object.entries(Icons).map(([name, Icon]) => (
+                <IconBox key={name} name={name} Icon={Icon} />
+            ))}
+            </div>
+        </DemoBox>
+    </Story>
+</Preview>

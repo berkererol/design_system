@@ -1,0 +1,9 @@
+.contentChildrenWrapper {
+  padding: 25px;
+  overflow: hidden;
+}
+
+.sbdocs-a {
+  color: #5940c3 !important;
+  text-decoration: underline !important;
+}

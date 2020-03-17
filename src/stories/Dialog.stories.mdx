@@ -1,0 +1,24 @@
+import { Meta, Story, Preview, Source } from '@storybook/addon-docs/blocks';
+import { DefaultDialogBox } from '../components/Dialog';
+import { Box, Divider, Grid } from '@material-ui/core';
+import * as Icons from '../components/Icons/IconObjects';
+
+
+<Meta title="Components/Dialog" component={DefaultDialogBox} />
+
+# Dialogs
+
+<Preview>
+    <Story name="Dialog Types">
+        <Box>
+            <DefaultDialogBox type="info" />
+            <DefaultDialogBox type="warning" />
+            <DefaultDialogBox type="error" />
+            <DefaultDialogBox type="success" />
+        </Box>   
+    </Story>
+</Preview>
+
+
+
+
